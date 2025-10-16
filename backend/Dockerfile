@@ -5,16 +5,16 @@ FROM python:3.12-slim
 WORKDIR /app
 
 # Copy requirements first to leverage Docker cache
-COPY requirements.txt .
+COPY backend/requirements.txt .
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
-COPY . .
+COPY backend .        # copy toàn bộ code trong thư mục backend
+COPY entrypoint.sh /app/entrypoint.sh  # ✅ đường dẫn đúng từ thư mục gốc
 
 # Create and set permissions for entrypoint script
-COPY entrypoint.sh /app/
 RUN chmod +x /app/entrypoint.sh && \
     # Ensure the script uses Unix line endings
     sed -i 's/\r$//' /app/entrypoint.sh && \
