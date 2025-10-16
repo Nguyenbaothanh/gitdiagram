@@ -7,6 +7,7 @@ services:
       - "8110:8000"
     volumes:
       - ./backend:/app
+      - ./backend/entrypoint.sh:/app/entrypoint.sh
     env_file:
       - .env
     environment:
