@@ -11,10 +11,10 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
-COPY . .        # copy toàn bộ code trong thư mục backend
-COPY entrypoint.sh /app/  # ✅ đường dẫn đúng từ thư mục gốc
+COPY . .
 
 # Create and set permissions for entrypoint script
+COPY entrypoint.sh /app/
 RUN chmod +x /app/entrypoint.sh && \
     # Ensure the script uses Unix line endings
     sed -i 's/\r$//' /app/entrypoint.sh && \
